@@ -13,9 +13,9 @@ Avant de commencer, assurez-vous que les éléments suivants sont installés sur
 
 Suivez les étapes ci-dessous pour installer le projet en local :
 
-1. Clonez ce référentiel GitHub sur votre machine : https://github.com/Ch0up/shop.git
+1. Clonez ce référentiel GitHub sur votre machine : https://github.com/Ch0up/e-shop.git
 
-2. Accédez au répertoire du projet : cd/shop
+2. Accédez au répertoire du projet : cd/e-shop
 
 3. Installez les dépendances du projet en exécutant la commande suivante : npm install
 
