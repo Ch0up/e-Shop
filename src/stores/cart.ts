@@ -8,7 +8,7 @@ export const useCartStore = defineStore('cart', {
     cart: cart || ([] as Product[])
   }),
   getters: {
-    cartItemsWithQuantity: (state) => {
+    cartItemsWithQuantity: (state: { cart: Product[] }) => {
       const cartItemsMap = new Map<string, { product: Product; quantity: number }>()
       state.cart.forEach((product) => {
         const existingItem = cartItemsMap.get(product.id)
@@ -21,7 +21,7 @@ export const useCartStore = defineStore('cart', {
 
       return Array.from(cartItemsMap.values())
     },
-    totalPrice: (state) => {
+    totalPrice: (state: { cart: Product[] }) => {
       return state.cart.reduce((total, product) => total + product.price, 0)
     },
     totalQuantity: (state) => {
@@ -38,24 +38,25 @@ export const useCartStore = defineStore('cart', {
       await this.save()
     },
 
+    findProductIndex(product: Product): number {
+      return this.cart.findIndex((item: Product) => item.id === product.id);
+    },
+
     async removeOneFromCart(product: Product) {
-      const index = this.cart.findIndex((item) => item.id === product.id)
+      const index = this.findProductIndex(product);
       if (index !== -1) {
-        const item = this.cart[index]
-        if (item.quantity > 1) {
-          item.quantity -= 1
-        } else {
-          this.cart.splice(index, 1)
-        }
+        this.cart.splice(index, 1)
       }
       await this.save()
     },
 
     async addOneToCart(product: Product) {
-      const item = this.cart.find((cartItem) => cartItem.id === product.id)
-      if (item) {
-        const newItem = { ...product, quantity: 1 }
-        this.cart.push(newItem)
+      const index = this.findProductIndex(product);
+      if (index !== -1) {
+        // S'il existe déjà un élément avec le même ID, cela insère le nouvel élément à la suite de ceux déjà présent dans le tableau
+        this.cart.splice(index + 1, 0, product)
+      } else {
+        this.cart.push(product)
       }
       await this.save()
     },

@@ -5,11 +5,11 @@ class StorageManager {
     this.storage = localStorage
   }
 
-  save(cardList: any[]) {
+  save(cardList: Product[]) {
     this.storage.setItem('cardList', JSON.stringify(cardList))
   }
 
-  fetchAll(): any[] | null {
+  fetchAll(): Product[] | null {
     const serializedCardList = this.storage.getItem('cardList')
     return serializedCardList ? JSON.parse(serializedCardList) : null
   }

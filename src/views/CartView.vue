@@ -1,7 +1,7 @@
 <template>
-  <Cart />
+  <CartContainer />
 </template>
 
 <script setup lang="ts">
-import Cart from '@/components/CartContainer.vue'
+import CartContainer from '@/components/cart/CartContainer.vue';
 </script>

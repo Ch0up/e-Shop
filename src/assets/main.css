@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: #f1f1f1f1;
+  background-color: #212634;
 }
 
 a {
@@ -17,12 +17,17 @@ a {
 @media (min-width: 1024px) {
   body {
     display: flex;
-    place-items: center;
   }
 
   #app {
     padding: 0 2rem;
   }
+}
+
+/* Je sais que le important n'est pas une bonne pratique */
+.custom-button {
+  background-color: #3a8e99 !important;
+  color: #ffffffff !important;
 }
 
 .card-container {

@@ -1,6 +1,6 @@
 <template>
   <v-layout>
-    <Navbar :cartTotalQuantity="cartTotalQuantity" />
+    <NavbarContainer :cartTotalQuantity="cartTotalQuantity" :title="title" />
     <v-main>
       <v-container fluid>
         <RouterView />
@@ -12,16 +12,18 @@
 <script lang="ts">
 import { useCartStore } from '@/stores/cart'
 import { computed } from 'vue'
-import Navbar from '@/components/Navbar.vue'
+import NavbarContainer from '@/components/layout/NavbarContainer.vue'
 
 export default {
-  components: { Navbar },
+  components: { NavbarContainer },
   setup() {
     const cartStore = useCartStore()
     const cartTotalQuantity = computed(() => cartStore.totalQuantity)
+    const title = 'THE Boutique'
 
     return {
-      cartTotalQuantity
+      cartTotalQuantity,
+      title
     }
   }
 }
